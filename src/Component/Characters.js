@@ -26,7 +26,11 @@ function Characters() {
     }
 
     function addOffset() {
-        setOffset(prevState => prevState + 30)
+        setOffset(prevState => prevState + 100)
+    }
+
+    function minusOffset() {
+        setOffset(prevState => prevState - 100)
     }
 
     function updateHeroList(str) {
@@ -57,14 +61,15 @@ function Characters() {
                     <DemoV4 />
                 </Row>
                 <Row>
-                    <Col>
-                        <div className="d-flex">
-                            <Form.Control value={singleChar} onChange={(e)=>{setSingleChar(e.target.value)}} placeholder="Search for your character" />
+                    <Col md={"3"}>
+                        <div className="d-flex pl-5">
+                            <Form.Control style={{width: "300px"}} value={singleChar} onChange={(e)=>{setSingleChar(e.target.value)}} placeholder="Search for your character" />
                             <button onClick={()=>{updateHeroList(singleChar)}}>Enter</button>
                         </div>
                     </Col>
                     <Col>
-                        <div onClick={addOffset}>Next</div>
+                        <button onClick={minusOffset}>Previous</button>
+                        <button onClick={addOffset}>Next</button>
                     </Col>
                 </Row>
                 <Row>
@@ -75,7 +80,7 @@ function Characters() {
                                         <Card.Img
                                             src={`${ele.thumbnail.path}/portrait_xlarge.${ele.thumbnail.extension}`}/>
                                         <Card.Title>{ele.name}</Card.Title>
-                                        <Link to={`/characters/${ele.id}`}>View Character</Link>
+                                        <Link to={`/characters/${ele.id}`}>View Comics</Link>
                                         <a href={`${ele.urls[0].url}`}>View Bio</a>
                                     </Card>
                                 </Col>

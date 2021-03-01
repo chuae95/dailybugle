@@ -1,4 +1,4 @@
-import React, {useEffect} from "react"
+import React, {useEffect, useState} from "react"
 import './App.css';
 import {
     BrowserRouter as Router,
@@ -12,10 +12,11 @@ import Navigation from "./Component/Navigation";
 import Home from "./Component/Home"
 import ComicsLib from "./Component/ComicsLib";
 
-
 function App() {
 
-  return (
+    const [cart, setCart] = useState([])
+
+    return (
     <Router>
         <Navigation />
         <Switch>
@@ -28,10 +29,13 @@ function App() {
                 <Characters />
             </Route>
             <Route path = "/characters/:id">
-                <SingleHero />
+                <SingleHero addToCart={setCart} />
             </Route>
             <Route path = "/comics">
-                <ComicsLib />
+                <ComicsLib addToCart={setCart} />
+            </Route>
+            <Route path = "/cart">
+                {/*<Cart items={cart} />*/}
             </Route>
         </Switch>
 

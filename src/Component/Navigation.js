@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {Navbar, NavDropdown} from "react-bootstrap"
+import {Navbar, NavDropdown, Badge} from "react-bootstrap"
 import {NavLink} from "react-router-dom"
 
 import "../CSS/Navigation.css"
@@ -18,6 +18,13 @@ function Navigation() {
                     <NavLink style={{color: "#D4AF37"}} className="pl-5" to="/characters">Characters</NavLink>
                     <NavLink style={{color: "#D4AF37"}} className="pl-5" to="/comics">Comics</NavLink>
                 </Navbar.Collapse>
+                <div style={{width: "150px"}} className="d-flex justify-content-between">
+                    <NavLink to="/" style={{float: "right", color: "#D4AF37"}}>
+                        Cart
+                        <Badge variant="light">0</Badge>
+                    </NavLink>
+                    <NavLink to="/" style={{float: "right", color: "#D4AF37"}}>Sign Up</NavLink>
+                </div>
             </Navbar>
         );
      }

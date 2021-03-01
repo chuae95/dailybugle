@@ -6,7 +6,7 @@ import Comics from "./Comics";
 
 
 
-function SingleHero() {
+function SingleHero({addToCart}) {
 
     const {id} = useParams()
     const [singleHero, setSingleHero] = useState({})
@@ -235,6 +235,7 @@ function SingleHero() {
         }
     ]
 
+
     useEffect(() => {
 
         axios.get(`https://gateway.marvel.com/v1/public/characters/${id}?ts=1&apikey=3471aeb1ecc235abf317b810dfa2ed7f&hash=16758f16bf31f97be2027a67da287bd4`)
@@ -251,11 +252,19 @@ function SingleHero() {
 
         return (
             <div>
-                <div>{singleHero.name}</div>
+                <div className="d-flex">
+                <div style={{width: "60%"}}>
+                    <h3>{singleHero.name}</h3>
+                    {/*<img src = {`${singleHero.thumbnail.path}/portrait_xlarge.${singleHero.thumbnail.extension}`} />*/}
+                    <h4>{singleHero.description}</h4>`
+                </div>
+                <div style={{width: "40%",backgroundSize: "cover", backgroundImage: "url('https://static3.srcdn.com/wordpress/wp-content/uploads/2019/12/marvel-logo-header.jpg?q=50&fit=crop&w=960&h=500')"}}>
+                </div>
+                </div>
                 {comicList.map((ele, idx) => (
-                    <div key = {idx}>
-                        <div>{ele.name}</div>
-                        <Comics comicList={comicList[idx]} singleHero={singleHero} id={id} name={ele.name} />
+                    <div style={{border: "1px solid black"}}key = {idx}>
+                        <h4>{ele.name}</h4>
+                        <Comics comicList={comicList[idx]} singleHero={singleHero} id={id} name={ele.name} addToCart={addToCart} />
                     </div>
                 ))}
             </div>

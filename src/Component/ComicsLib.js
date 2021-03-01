@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {Row, Card, Col} from "react-bootstrap"
 import axios from "axios"
 
-function ComicsLib() {
+function ComicsLib({addToCart}) {
 
     const [comicList, setComicList] = useState([])
     const [loading, setLoading] = useState(true)
@@ -190,8 +190,8 @@ function ComicsLib() {
                     <div className="d-flex flex-column align-items-center justify-content-center flex-wrap" style={{width: "60VW", backgroundColor: "white", backgroundSize: "cover", backgroundImage: "url('https://i.stack.imgur.com/QgTND.jpg')"}}>
                         <Row>
                             <Col>
-                                <Card style={{width: "500px"}}>
-                                    <Card.Title>{comicList[index].title}</Card.Title>
+                                <Card>
+                                    <Card.Title style={{width: "450px"}}>{comicList[index].title}</Card.Title>
                                     <Card.Img className="mb-3" style={{width: "450px", height: "600px"}} src = {`${comicList[index].thumbnail.path}/portrait_xlarge.${comicList[index].thumbnail.extension}`}/>
                                     <Card.Subtitle className="mb-3" style={{width: "450px"}}>
                                         {(comicList[index].description === null) ?
@@ -199,7 +199,7 @@ function ComicsLib() {
                                             comicList[index].description}
                                     </Card.Subtitle>
                                     <Card.Subtitle className="mb-3">
-                                        {(comicList[index].price === undefined) ?
+                                        {(comicList[index].prices[0].price === undefined) ?
                                             "This comic is no longer available" :
                                             comicList[index].price}
                                     </Card.Subtitle>
@@ -207,7 +207,7 @@ function ComicsLib() {
                                         "No Link available" :
                                         <a href={`${comicList[index].urls[0].url}`}>View Summary</a>
                                     }
-
+                                    <button>Buy Now</button>
                                 </Card>
                             </Col>
                         </Row>

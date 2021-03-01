@@ -51,11 +51,17 @@ function Home() {
         }
         ]
 
+    function selectNews(e) {
+        e.target.style.cursor = "pointer"
+    }
+
+
+
     useEffect(() => {
 
-        setNews(temp)
+        // setNews(temp)
 
-        // const a = getNews()
+        const a = getNews()
 
 
 
@@ -77,35 +83,42 @@ function Home() {
     return (
         <div className="player-wrapper">
             <div id="priorityOne">
-                <div id="poster">
-                    <img src = "https://i.pinimg.com/originals/0f/cd/d9/0fcdd939a5d97a41653fa0c747d9ff83.jpg" />
-                </div>
-                <div id="poster-desc" style={{fontFamily: "Russo One"}}>
-                    <ReactPlayer
-                        className="react-player"
-                        url="https://www.youtube.com/watch?v=ybji16u608U"
-                    />
-                    <div>
-                        In Marvel Studios' action-packed spy thriller "Black Widow," Natasha Romanoff aka Black Widow
-                        confronts the darker parts of her ledger when a dangerous conspiracy with ties to her past arises.
-                        Pursued by a force that will stop at nothing to bring her down,
-                        Natasha must deal with her history as a spy and the broken relationships left in her wake long before she became an Avenger.
+                <div id="poster" style={{backgroundImage: "url(https://shopdisneyeu.scene7.com/is/image/DisneyStoreES/33286_black_widow_mb?$mb$)"}}>
+                    <div id="poster-desc" style={{fontFamily: "Russo One"}}>
+                        <ReactPlayer
+                            className="react-player"
+                            url="https://www.youtube.com/watch?v=ybji16u608U"
+                        />
+                        <div className="pl-5 pr-5">
+                            In Marvel Studios' action-packed spy thriller "Black Widow," Natasha Romanoff aka Black Widow
+                            confronts the darker parts of her ledger when a dangerous conspiracy with ties to her past arises.
+                            <br/>
+                            <br/>
+                            Pursued by a force that will stop at nothing to bring her down,
+                            Natasha must deal with her history as a spy and the broken relationships left in her wake long before she became an Avenger.
+                            <br/>
+                            <br/>
+                            Join Agent Romanoff as she confronts familiar enemies and reunites with old friends.
+                        </div>
+                        <button style={{backgroundColor: "black",color: "red", border: "1px solid red"}}>Click here to view Trailer</button>
                     </div>
-                    <button style={{backgroundColor: "black",color: "red", border: "1px solid red"}}>Click here to view Trailer</button>
                 </div>
+
             </div>
             <div style={{backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundImage: "url(https://blog.playstation.com/tachyon/2019/08/Aug-29-Spider-Man-Photo-Mode-Guide-featured-image.jpg?resize=1088,612&crop_strategy=smart&zoom=1)"}}>
             <h2>News</h2>
             <Row id="news" className="d-flex align-items-center">
                 {news.map(ele => (
                     <Col>
-                        <Card style={{height: "80VH"}}>
-                            <Card.Title style={{fontSize: "30px"}}>{ele.source.name}</Card.Title>
-                            <Card.Img style={{width: "100%", height: "500px"}} src={ele.urlToImage} />
-                            <Card.Subtitle style={{fontSize: "30px", textDecoration: "underline"}} className="pb-4">{ele.title}</Card.Subtitle>
-                            <Card.Text>{ele.description}</Card.Text>
-                            <a href={`${ele.url}`}>Read the full article here!</a>
-                        </Card>
+                        <div>
+                            <Card className="default mr-3 ml-3" style={{height: "80VH", backgroundColor: "rgba(255,255,255,1)"}} onMouseOver={selectNews}>
+                                <Card.Title className="pl-3 pb-3 pt-3" style={{fontSize: "30px"}}>{ele.source.name}</Card.Title>
+                                <Card.Img className="pl-3 pr-3 pb-3" style={{width: "100%", height: "50%"}} src={ele.urlToImage} />
+                                <Card.Subtitle style={{fontSize: "30px", textDecoration: "underline"}} className="pb-4 pl-3 pr-3">{ele.title}</Card.Subtitle>
+                                <Card.Text className="pl-3 pr-3">{ele.description}</Card.Text>
+                                <a className="pl-3 pr-3" href={`${ele.url}`}>Read the full article here!</a>
+                            </Card>
+                        </div>
                     </Col>
                 ))}
             </Row>

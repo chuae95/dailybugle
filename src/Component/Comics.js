@@ -3,10 +3,10 @@ import {Card, Row, Col, Button} from "react-bootstrap"
 import {Link} from "react-router-dom"
 import axios from "axios";
 
-function Comics({comicList, singleHero, id, name}) {
+function Comics({comicList, singleHero, id, addToCart, name}) {
 
     const [individualComic, setIndividualComic] = useState([])
-    //
+
     // let template = {
     //     "code": 200,
     //         "status": "Ok",
@@ -247,6 +247,10 @@ function Comics({comicList, singleHero, id, name}) {
 
     const [loading, setLoading] = useState(true)
 
+    function updateCart(obj) {
+        addToCart(prevState => ([...prevState, obj]))
+    }
+
     useEffect(() => {
 
         const a = getInfo(`${comicList.resourceURI}?ts=1&apikey=3471aeb1ecc235abf317b810dfa2ed7f&hash=16758f16bf31f97be2027a67da287bd4`)
@@ -261,12 +265,10 @@ function Comics({comicList, singleHero, id, name}) {
             })
     }
 
-    console.log(individualComic)
-
     return (
          <div>
              {(loading) ? <div>Test</div> :
-             <Row>
+             <Row style={{backgroundColor: "#D4F1F4"}}>
                  <Col md={"1"}>
                      <Card.Img src = {`${individualComic.thumbnail.path}/portrait_xlarge.${individualComic.thumbnail.extension}`} />
                  </Col>
@@ -292,12 +294,12 @@ function Comics({comicList, singleHero, id, name}) {
              }
          </div>
         // <div>
-        //     <Row>
-        //         <Col md={"1"}>
+        //     <Row style={{backgroundColor: "#D4F1F4"}}>
+        //         <Col md={"2"}>
         //             <Card.Img src = {`${temp.thumbnail.path}/portrait_xlarge.${temp.thumbnail.extension}`} />
         //         </Col>
         //         <Col md={"2"}>
-        //             <Card.Subtitle>#{temp.issueNumber}</Card.Subtitle>
+        //             <Card.Title>{temp.issueNumber}</Card.Title>
         //             <Card.Subtitle>{temp.description}</Card.Subtitle>
         //         </Col>
         //         <Col md={"2"}>
