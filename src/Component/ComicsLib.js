@@ -180,11 +180,11 @@ function ComicsLib({addToCart, cart, user}) {
 
     async function getComics() {
         let temp = []
-        const a = await axios.get("http://gateway.marvel.com/v1/public/comics?ts=1&apikey=cf85bbce81c9b8874f5cfc8c9c782483&hash=dab020a76ba1a06f6019c1d2e4d75711&limit=100")
+        const a = await axios.get("http://gateway.marvel.com/v1/public/comics?ts=1&apikey=3471aeb1ecc235abf317b810dfa2ed7f&hash=16758f16bf31f97be2027a67da287bd4&limit=100")
             .then(response =>
             response)
         for(let i = 0; i < 5; i++) {
-            const b = await axios.get(`${a.data.data.results[i].resourceURI}?ts=1&apikey=cf85bbce81c9b8874f5cfc8c9c782483&hash=dab020a76ba1a06f6019c1d2e4d75711`)
+            const b = await axios.get(`${a.data.data.results[i].resourceURI}?ts=1&apikey=3471aeb1ecc235abf317b810dfa2ed7f&hash=16758f16bf31f97be2027a67da287bd4`)
                 .then(resp => {
                     temp.push(resp.data.data.results[0])
                 })

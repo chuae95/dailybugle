@@ -100,7 +100,7 @@ function Home() {
                             <br/>
                             Join Agent Romanoff as she confronts familiar enemies and reunites with old friends.
                         </div>
-                        <button style={{backgroundColor: "black",color: "red", border: "1px solid red"}}>Click here to view Trailer</button>
+                        <button id="trailer_btn" >Click here to view Trailer</button>
                     </div>
                 </div>
 

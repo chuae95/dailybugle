@@ -48,7 +48,7 @@ function Navigation({cart, user, online}) {
 
 
         return (
-            <Navbar  expand="lg" id="MainNav" className={`Navigation ${x.join(" ")}`}>
+            <Navbar  expand="lg" style={{height: "5VH"}} id="MainNav" className={`Navigation ${x.join(" ")}`}>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <NavLink style={{color: "white", fontFamily: "Shippori Mincho B1"}} className="pl-5" to="/">Home
@@ -61,16 +61,16 @@ function Navigation({cart, user, online}) {
                         <img style={{height: "3VH"}} src = "https://www.flaticon.com/svg/vstatic/svg/171/171322.svg?token=exp=1614666671~hmac=5204d982343defa79567a2529a7b507b"/>
                     </NavLink>
                 </Navbar.Collapse>
-                <div style={{width: "300px"}} className="d-flex justify-content-between">
-                    <NavLink to="/Cart" style={{float: "right", color: "#D4AF37"}}>
+                <div style={{width: "300px"}} className="d-flex justify-content-start align-items-center">
+                    <NavLink to="/Cart" style={{fontFamily: "Shippori Mincho B1", float: "right", color: "white"}}>
                         Cart
-                        <Badge variant="light">{cart.length}</Badge>
+                        <Badge className="ml-3" variant="light">{cart.length}</Badge>
                         <img style={{height: "3VH"}} src = "https://www.flaticon.com/premium-icon/icons/svg/3002/3002254.svg"/>
                     </NavLink>
                     {user ?
-                        <div className="d-flex">
-                            <button onClick={logout}>Logout</button>
-                            <h6 style={{color: "white"}}>{user.displayName}</h6>
+                        <div className="d-flex align-items-center">
+                            <button className="mr-3" style={{height: "30px"}} onClick={logout}>Logout</button>
+                            <h6 style={{color: "white"}}>Signed in as <br/> {user.displayName}</h6>
                         </div>
                         :
                         <button onClick={login}>Login</button>

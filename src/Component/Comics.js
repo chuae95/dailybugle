@@ -262,7 +262,7 @@ function Comics({comicList, singleHero, id, addToCart, name, cart, user}) {
 
     useEffect(() => {
 
-        const a = getInfo(`${comicList.resourceURI}?ts=1&apikey=cf85bbce81c9b8874f5cfc8c9c782483&hash=dab020a76ba1a06f6019c1d2e4d75711`)
+        const a = getInfo(`${comicList.resourceURI}?ts=1&apikey=3471aeb1ecc235abf317b810dfa2ed7f&hash=16758f16bf31f97be2027a67da287bd4`)
         // setIndividualComic(temp)
 
     }, [id, loading, name])
