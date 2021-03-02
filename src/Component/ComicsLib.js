@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {Row, Card, Col} from "react-bootstrap"
 import axios from "axios"
 
-function ComicsLib({addToCart, cart}) {
+function ComicsLib({addToCart, cart, user}) {
 
     const [comicList, setComicList] = useState([])
     const [loading, setLoading] = useState(true)
@@ -159,11 +159,16 @@ function ComicsLib({addToCart, cart}) {
     }
 
     function updateCart(obj) {
-        if (cart.indexOf(obj) >= 0) {
-            alert("You have already added this item to cart!")
+        if (user == null) {
+            alert("Please login to add item to cart")
         } else {
-            addToCart(prevState => [...prevState, obj])
+            if (cart.indexOf(obj) >= 0) {
+                alert("You have already added this item to cart")
+            } else {
+                addToCart(prevState => [...prevState, obj])
+            }
         }
+
     }
 
     useEffect(() => {

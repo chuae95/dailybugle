@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import {Navbar, NavDropdown, Badge} from "react-bootstrap"
 import {NavLink} from "react-router-dom"
+import firebase, {auth, provider} from "../Lib/Firebase"
 
 import "../CSS/Navigation.css"
 
 
-function Navigation({cart}) {
+function Navigation({cart, user, online}) {
 
     const [scrolled, setScrolled] = useState(false)
     let x = ["navbar"]
@@ -19,6 +20,22 @@ function Navigation({cart}) {
         } else {
             a.style.position = "relative"
         }
+    }
+
+    function login() {
+        auth.signInWithPopup(provider)
+            .then((result) => {
+                const user = result.user;
+                online(user)
+            })
+
+    }
+
+    function logout() {
+        auth.signOut()
+            .then(() => {
+                online(null)
+            })
     }
 
     useEffect(() => {
@@ -44,14 +61,20 @@ function Navigation({cart}) {
                         <img style={{height: "3VH"}} src = "https://www.flaticon.com/svg/vstatic/svg/171/171322.svg?token=exp=1614666671~hmac=5204d982343defa79567a2529a7b507b"/>
                     </NavLink>
                 </Navbar.Collapse>
-                <div style={{width: "150px"}} className="d-flex justify-content-between">
+                <div style={{width: "300px"}} className="d-flex justify-content-between">
                     <NavLink to="/Cart" style={{float: "right", color: "#D4AF37"}}>
                         Cart
                         <Badge variant="light">{cart.length}</Badge>
                         <img style={{height: "3VH"}} src = "https://www.flaticon.com/premium-icon/icons/svg/3002/3002254.svg"/>
                     </NavLink>
-
-                    <NavLink to="/" style={{float: "right", color: "#D4AF37"}}>Sign Up</NavLink>
+                    {user ?
+                        <div className="d-flex">
+                            <button onClick={logout}>Logout</button>
+                            <h6 style={{color: "white"}}>{user.displayName}</h6>
+                        </div>
+                        :
+                        <button onClick={login}>Login</button>
+                    }
                 </div>
             </Navbar>
         );

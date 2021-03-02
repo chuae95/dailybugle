@@ -6,7 +6,7 @@ import Comics from "./Comics";
 
 
 
-function SingleHero({addToCart, cart}) {
+function SingleHero({addToCart, cart, user}) {
 
     const {id} = useParams()
     const [singleHero, setSingleHero] = useState({})
@@ -264,7 +264,7 @@ function SingleHero({addToCart, cart}) {
                 {comicList.map((ele, idx) => (
                     <div style={{border: "1px solid black"}}key = {idx}>
                         <h4>{ele.name}</h4>
-                        <Comics comicList={comicList[idx]} singleHero={singleHero} id={id} name={ele.name} addToCart={addToCart} cart={cart}/>
+                        <Comics comicList={comicList[idx]} singleHero={singleHero} id={id} name={ele.name} addToCart={addToCart} cart={cart} user={user}/>
                     </div>
                 ))}
             </div>
