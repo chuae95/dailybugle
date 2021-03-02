@@ -5,7 +5,7 @@ import {NavLink} from "react-router-dom"
 import "../CSS/Navigation.css"
 
 
-function Navigation() {
+function Navigation({cart}) {
 
         return (
             <Navbar style={{backgroundColor: "black"}} expand="lg" className="Navigation">
@@ -19,9 +19,9 @@ function Navigation() {
                     <NavLink style={{color: "#D4AF37"}} className="pl-5" to="/comics">Comics</NavLink>
                 </Navbar.Collapse>
                 <div style={{width: "150px"}} className="d-flex justify-content-between">
-                    <NavLink to="/" style={{float: "right", color: "#D4AF37"}}>
+                    <NavLink to="/Cart" style={{float: "right", color: "#D4AF37"}}>
                         Cart
-                        <Badge variant="light">0</Badge>
+                        <Badge variant="light">{cart.length}</Badge>
                     </NavLink>
                     <NavLink to="/" style={{float: "right", color: "#D4AF37"}}>Sign Up</NavLink>
                 </div>

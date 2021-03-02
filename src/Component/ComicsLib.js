@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {Row, Card, Col} from "react-bootstrap"
 import axios from "axios"
 
-function ComicsLib({addToCart}) {
+function ComicsLib({addToCart, cart}) {
 
     const [comicList, setComicList] = useState([])
     const [loading, setLoading] = useState(true)
@@ -156,11 +156,15 @@ function ComicsLib({addToCart}) {
     }
     function comicSelected(value) {
         setIndex(value)
-        console.log(index)
     }
 
-
-
+    function updateCart(obj) {
+        if (cart.indexOf(obj) >= 0) {
+            alert("You have already added this item to cart!")
+        } else {
+            addToCart(prevState => [...prevState, obj])
+        }
+    }
 
     useEffect(() => {
 
@@ -171,11 +175,11 @@ function ComicsLib({addToCart}) {
 
     async function getComics() {
         let temp = []
-        const a = await axios.get("http://gateway.marvel.com/v1/public/comics?ts=1&apikey=3471aeb1ecc235abf317b810dfa2ed7f&hash=16758f16bf31f97be2027a67da287bd4&limit=100")
+        const a = await axios.get("http://gateway.marvel.com/v1/public/comics?ts=1&apikey=cf85bbce81c9b8874f5cfc8c9c782483&hash=dab020a76ba1a06f6019c1d2e4d75711&limit=100")
             .then(response =>
             response)
-        for(let i = 0; i < 100; i++) {
-            const b = await axios.get(`${a.data.data.results[i].resourceURI}?ts=1&apikey=3471aeb1ecc235abf317b810dfa2ed7f&hash=16758f16bf31f97be2027a67da287bd4`)
+        for(let i = 0; i < 5; i++) {
+            const b = await axios.get(`${a.data.data.results[i].resourceURI}?ts=1&apikey=cf85bbce81c9b8874f5cfc8c9c782483&hash=dab020a76ba1a06f6019c1d2e4d75711`)
                 .then(resp => {
                     temp.push(resp.data.data.results[0])
                 })
@@ -187,32 +191,32 @@ function ComicsLib({addToCart}) {
         return (
             <div className="d-flex" style={{width: "100VW", height: "90VH", backgroundColor:"black"}}>
                 {(comicList.length > 0) ?
-                    <div className="d-flex flex-column align-items-center justify-content-center flex-wrap" style={{width: "60VW", backgroundColor: "white", backgroundSize: "cover", backgroundImage: "url('https://i.stack.imgur.com/QgTND.jpg')"}}>
+                    <div className="d-flex flex-column align-items-center justify-content-center flex-wrap" style={{width: "60VW",height: "auto", backgroundColor: "white", backgroundSize: "cover", backgroundImage: "url('https://i.stack.imgur.com/QgTND.jpg')"}}>
                         <Row>
                             <Col>
-                                <Card>
+                                <Card className="pl-3 pr-3 pt-3 pb-3">
                                     <Card.Title style={{width: "450px"}}>{comicList[index].title}</Card.Title>
                                     <Card.Img className="mb-3" style={{width: "450px", height: "600px"}} src = {`${comicList[index].thumbnail.path}/portrait_xlarge.${comicList[index].thumbnail.extension}`}/>
-                                    <Card.Subtitle className="mb-3" style={{width: "450px"}}>
+                                    <Card.Subtitle className="mb-3" style={{width: "450px", height: "100px", overflowY: "scroll"}}>
                                         {(comicList[index].description === null) ?
                                         "Unfortunately, the summary is unavailable at the moment, kindly use the link below for more information" :
                                             comicList[index].description}
                                     </Card.Subtitle>
-                                    <Card.Subtitle className="mb-3">
-                                        {(comicList[index].prices[0].price === undefined) ?
-                                            "This comic is no longer available" :
-                                            comicList[index].price}
-                                    </Card.Subtitle>
+                                    {/*<Card.Subtitle className="mb-3"> USD*/}
+                                    {/*    {(comicList[index].prices[0].price) === undefined) ?*/}
+                                    {/*        "This comic is no longer available" :*/}
+                                    {/*        comicList[index].prices[0].price}*/}
+                                    {/*</Card.Subtitle>*/}
                                     {(comicList[index].urls[0].url === undefined) ?
                                         "No Link available" :
                                         <a href={`${comicList[index].urls[0].url}`}>View Summary</a>
                                     }
-                                    <button>Buy Now</button>
+                                    <button onClick={()=>updateCart(comicList[index])}>Buy Now</button>
                                 </Card>
                             </Col>
                         </Row>
                     </div>:
-                    <div>Loading</div>
+                    <div style={{color: "white"}}>Loading</div>
                 }
                 <div style={{width: "40VW", overflowY: "scroll"}} className="d-flex justify-content-center">
                     <Row style={{width: "90%"}} className="mt-5">

@@ -11,6 +11,7 @@ import SingleHero from "./Component/singleHero";
 import Navigation from "./Component/Navigation";
 import Home from "./Component/Home"
 import ComicsLib from "./Component/ComicsLib";
+import Cart from "./Component/Cart";
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
 
     return (
     <Router>
-        <Navigation />
+        <Navigation cart={cart} />
         <Switch>
             <Route exact path = "/">
                 <div style={{width: "100%", height:"100%", backgroundImage: "url('http://bsnscb.com/data/out/123/39809045-marvel-wallpapers.jpg')"}} >
@@ -29,13 +30,13 @@ function App() {
                 <Characters />
             </Route>
             <Route path = "/characters/:id">
-                <SingleHero addToCart={setCart} />
+                <SingleHero addToCart={setCart} cart={cart} />
             </Route>
             <Route path = "/comics">
-                <ComicsLib addToCart={setCart} />
+                <ComicsLib addToCart={setCart} cart={cart} />
             </Route>
             <Route path = "/cart">
-                {/*<Cart items={cart} />*/}
+                <Cart cart={cart} removeFromCart={setCart}/>
             </Route>
         </Switch>
 

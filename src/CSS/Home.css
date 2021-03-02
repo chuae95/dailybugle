@@ -4,6 +4,10 @@
     overflow-x: hidden;
 }
 
+body {
+    overflow-x: hidden;
+}
+
 #priorityOne {
     width: 100VW;
     height: 100VH;
@@ -42,7 +46,7 @@
 
 #news {
     height: 100VH;
-    overflow-x: hidden;
+    font-family: "Shippori Mincho B1";
 }
 
 .default:hover {

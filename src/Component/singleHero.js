@@ -6,7 +6,7 @@ import Comics from "./Comics";
 
 
 
-function SingleHero({addToCart}) {
+function SingleHero({addToCart, cart}) {
 
     const {id} = useParams()
     const [singleHero, setSingleHero] = useState({})
@@ -238,7 +238,7 @@ function SingleHero({addToCart}) {
 
     useEffect(() => {
 
-        axios.get(`https://gateway.marvel.com/v1/public/characters/${id}?ts=1&apikey=3471aeb1ecc235abf317b810dfa2ed7f&hash=16758f16bf31f97be2027a67da287bd4`)
+        axios.get(`https://gateway.marvel.com/v1/public/characters/${id}?ts=1&apikey=cf85bbce81c9b8874f5cfc8c9c782483&hash=dab020a76ba1a06f6019c1d2e4d75711`)
             .then(response => {
                 setSingleHero(response.data.data.results[0])
                 let temp = []
@@ -264,7 +264,7 @@ function SingleHero({addToCart}) {
                 {comicList.map((ele, idx) => (
                     <div style={{border: "1px solid black"}}key = {idx}>
                         <h4>{ele.name}</h4>
-                        <Comics comicList={comicList[idx]} singleHero={singleHero} id={id} name={ele.name} addToCart={addToCart} />
+                        <Comics comicList={comicList[idx]} singleHero={singleHero} id={id} name={ele.name} addToCart={addToCart} cart={cart}/>
                     </div>
                 ))}
             </div>

@@ -59,9 +59,9 @@ function Home() {
 
     useEffect(() => {
 
-        // setNews(temp)
+        setNews(temp)
 
-        const a = getNews()
+        // const a = getNews()
 
 
 
@@ -105,14 +105,14 @@ function Home() {
                 </div>
 
             </div>
+            <h1 style={{textAlign: "center", fontWeight: "bolder", fontSize: "50px"}}>News</h1>
             <div style={{backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundImage: "url(https://blog.playstation.com/tachyon/2019/08/Aug-29-Spider-Man-Photo-Mode-Guide-featured-image.jpg?resize=1088,612&crop_strategy=smart&zoom=1)"}}>
-            <h2>News</h2>
             <Row id="news" className="d-flex align-items-center">
                 {news.map(ele => (
                     <Col>
                         <div>
                             <Card className="default mr-3 ml-3" style={{height: "80VH", backgroundColor: "rgba(255,255,255,1)"}} onMouseOver={selectNews}>
-                                <Card.Title className="pl-3 pb-3 pt-3" style={{fontSize: "30px"}}>{ele.source.name}</Card.Title>
+                                <Card.Title className="pl-3 pb-3 pt-2" style={{fontSize: "30px"}}>{ele.source.name}</Card.Title>
                                 <Card.Img className="pl-3 pr-3 pb-3" style={{width: "100%", height: "50%"}} src={ele.urlToImage} />
                                 <Card.Subtitle style={{fontSize: "30px", textDecoration: "underline"}} className="pb-4 pl-3 pr-3">{ele.title}</Card.Subtitle>
                                 <Card.Text className="pl-3 pr-3">{ele.description}</Card.Text>
