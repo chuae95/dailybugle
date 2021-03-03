@@ -13,6 +13,7 @@ import Navigation from "./Component/Navigation";
 import Home from "./Component/Home"
 import ComicsLib from "./Component/ComicsLib";
 import Cart from "./Component/Cart";
+import Footer from "./Component/Footer";
 
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
 
     return (
     <Router>
-        <Navigation cart={cart} user={user} online={setUser} />
+        <Navigation cart={cart} user={user} online={setUser} setCart={setCart} />
         <Switch>
             <Route exact path = "/">
                 <div style={{width: "100%", height:"100%", backgroundImage: "url('http://bsnscb.com/data/out/123/39809045-marvel-wallpapers.jpg')"}} >
@@ -42,7 +43,7 @@ function App() {
                 <Cart cart={cart} removeFromCart={setCart}/>
             </Route>
         </Switch>
-
+        <Footer />
     </Router>
   );
 }

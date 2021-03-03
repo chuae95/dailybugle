@@ -221,7 +221,7 @@ function ComicsLib({addToCart, cart, user}) {
                             </Col>
                         </Row>
                     </div>:
-                    <div style={{position: "fixed", zIndex: "1",backgroundSize: "cover", backgroundRepeat: "no-repeat", width: "100VW", height: "100VH", color: "white", backgroundImage: "url(https://enginestories.com/wp-content/uploads/2020/04/marvel-gif.gif)"}}></div>
+                    <div style={{backgroundPosition: "center", position: "fixed", zIndex: "1",backgroundSize: "cover", backgroundRepeat: "no-repeat", width: "100VW", height: "100VH", color: "white", backgroundImage: "url(https://enginestories.com/wp-content/uploads/2020/04/marvel-gif.gif)"}}></div>
                 }
                 <div style={{width: "40VW", overflowY: "scroll"}} className="d-flex justify-content-center">
                     <Row style={{width: "90%"}} className="mt-5">

@@ -5,8 +5,7 @@ import firebase, {auth, provider} from "../Lib/Firebase"
 
 import "../CSS/Navigation.css"
 
-
-function Navigation({cart, user, online}) {
+function Navigation({cart, user, online, setCart}) {
 
     const [scrolled, setScrolled] = useState(false)
     let x = ["navbar"]
@@ -32,6 +31,7 @@ function Navigation({cart, user, online}) {
         }
     }
 
+
     function login() {
         auth.signInWithPopup(provider)
             .then((result) => {
@@ -46,6 +46,9 @@ function Navigation({cart, user, online}) {
             .then(() => {
                 online(null)
             })
+
+        setCart([])
+
     }
 
     useEffect(() => {

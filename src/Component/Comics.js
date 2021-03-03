@@ -276,9 +276,9 @@ function Comics({comicList, singleHero, id, addToCart, name, cart, user}) {
     }
 
     return (
-         <div>
-             {(loading) ? <div>Test</div> :
-             <Row style={{height: "45VH", backgroundSize: "cover", backgroundImage: "url(https://wallpapercave.com/wp/wp5265940.jpg)"}}>
+         <div style={{width: "95VW", margin: "auto"}}>
+             {(loading) ? <div>Loading</div> :
+             <Row className="p-0" style={{width: "100%", height: "45VH", backgroundSize: "cover", backgroundImage: "url(https://wallpapercave.com/wp/wp5265940.jpg)"}}>
                  <Col className="d-flex justify-content-center align-items-center" md={"2"}>
                      <Card.Img style={{height: "40VH"}} src = {`${individualComic.thumbnail.path}/portrait_xlarge.${individualComic.thumbnail.extension}`} />
                  </Col>

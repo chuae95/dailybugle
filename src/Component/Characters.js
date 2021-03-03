@@ -13,11 +13,10 @@ function Characters() {
     const [singleCharArr, setSingleCharArr] = useState([])
     const [offset, setOffset] = useState(0)
 
-
     function pointer(e) {
         e.target.style.cursor = "pointer"
         e.target.style.padding = "5px"
-        e.target.style.border = "2px solid black"
+        e.target.style.border = "0px solid black"
     }
 
     function normal(e) {
@@ -27,11 +26,15 @@ function Characters() {
     }
 
     function addOffset() {
-        setOffset(prevState => prevState + 100)
+        if (offset < 1200) {
+            setOffset(prevState => prevState + 100)
+        }
     }
 
     function minusOffset() {
-        setOffset(prevState => prevState - 100)
+        if (offset > 0) {
+            setOffset(prevState => prevState - 100)
+        }
     }
 
     function updateHeroList(str) {
@@ -62,6 +65,7 @@ function Characters() {
                     <DemoV4 />
                 </Row>
                 <Row>
+                    <Col md={"4"}></Col>
                     <Col md={"3"}>
                         <div className="d-flex pl-5">
                             <Form.Control style={{width: "300px"}} value={singleChar} onChange={(e)=>{setSingleChar(e.target.value)}} placeholder="Search for your character" />
@@ -76,7 +80,7 @@ function Characters() {
                 <Row>
                     {(singleCharArr.length === 0) ?
                         charArr.map(ele => (
-                                <Col key={ele.id} md={"3"}>
+                                <Col key={ele.id} md={"2"}>
                                     <Card className="m-5" onMouseEnter={pointer} onMouseLeave={normal}>
                                         <Card.Img
                                             src={`${ele.thumbnail.path}/portrait_xlarge.${ele.thumbnail.extension}`}/>

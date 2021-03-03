@@ -43,14 +43,14 @@ body {
     justify-content: space-evenly;
     width: 39VW;
     height: 100VH;
-    color: red;
+    color: white;
     right: -40VW;
 }
 
 #trailer_btn {
     background-color: black;
-    color: red;
-    border: 1px solid red;
+    color: white;
+    border: 1px solid white;
 }
 
 #trailer_btn:hover {
