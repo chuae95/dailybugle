@@ -278,25 +278,25 @@ function Comics({comicList, singleHero, id, addToCart, name, cart, user}) {
     return (
          <div>
              {(loading) ? <div>Test</div> :
-             <Row style={{backgroundColor: "#D4F1F4"}}>
-                 <Col md={"1"}>
-                     <Card.Img src = {`${individualComic.thumbnail.path}/portrait_xlarge.${individualComic.thumbnail.extension}`} />
+             <Row style={{height: "45VH", backgroundSize: "cover", backgroundImage: "url(https://wallpapercave.com/wp/wp5265940.jpg)"}}>
+                 <Col className="d-flex justify-content-center align-items-center" md={"2"}>
+                     <Card.Img style={{height: "40VH"}} src = {`${individualComic.thumbnail.path}/portrait_xlarge.${individualComic.thumbnail.extension}`} />
                  </Col>
-                 <Col md={"4"}>
-                     <Card.Subtitle>#{individualComic.issueNumber}</Card.Subtitle>
+                 <Col style={{color: "white"}} className="d-flex flex-column justify-content-center" md={"3"}>
+                     <Card.Title>#{individualComic.issueNumber}</Card.Title>
                      <Card.Subtitle>{individualComic.description}</Card.Subtitle>
                  </Col>
-                 <Col md={"2"}>
+                 <Col style={{color: "white"}} className="d-flex justify-content-center align-items-center" md={"1"}>
                      <Card.Subtitle>US$ {individualComic.prices[0].price}</Card.Subtitle>
                  </Col>
-                 <Col md={"2"}>
+                 <Col className="d-flex justify-content-center align-items-center" md={"1"}>
                      <Button onClick={() => updateCart(individualComic)}>Buy Now</Button>
                  </Col>
-                 <Col md={"2"}>
-                     <Card.Subtitle>Characters Involved</Card.Subtitle>
-                     <div className="d-flex flex-column">
+                 <Col style={{color: "white"}} className = "d-flex flex-column justify-content-start">
+                     <Card.Subtitle className="mt-3">Characters Involved</Card.Subtitle>
+                     <div className="d-flex flex-column" style={{height: "40VH"}}>
                          {individualComic.characters.items.map((ele, idx) => (
-                             <Link key={idx} onClick={()=>setLoading(true)} to={`/characters/${ele.resourceURI.slice(47)}`}>{ele.name}</Link>
+                             <Link style={{color: "white"}} key={idx} onClick={()=>setLoading(true)} to={`/characters/${ele.resourceURI.slice(47)}`}>{ele.name}</Link>
                          ))}
                      </div>
                  </Col>
@@ -304,25 +304,25 @@ function Comics({comicList, singleHero, id, addToCart, name, cart, user}) {
              }
          </div>
         // <div>
-        //     <Row style={{backgroundColor: "#D4F1F4"}}>
-        //         <Col md={"2"}>
-        //             <Card.Img src = {`${temp.thumbnail.path}/portrait_xlarge.${temp.thumbnail.extension}`} />
+        //     <Row style={{height: "45VH", backgroundSize: "cover", backgroundImage: "url(https://wallpapercave.com/wp/wp5265940.jpg)"}}>
+        //         <Col className="d-flex justify-content-center align-items-center" md={"2"}>
+        //             <Card.Img style={{height: "40VH"}} src = {`${temp.thumbnail.path}/portrait_xlarge.${temp.thumbnail.extension}`} />
         //         </Col>
-        //         <Col md={"2"}>
+        //         <Col style={{color: "white"}} className="d-flex flex-column justify-content-center" md={"3"}>
         //             <Card.Title>{temp.issueNumber}</Card.Title>
         //             <Card.Subtitle>{temp.description}</Card.Subtitle>
         //         </Col>
-        //         <Col md={"2"}>
+        //         <Col style={{color: "white"}} className="d-flex justify-content-center align-items-center" md={"1"}>
         //             <Card.Subtitle>US$ {temp.prices[0].price}</Card.Subtitle>
         //         </Col>
-        //         <Col md={"2"}>
+        //         <Col className="d-flex justify-content-center align-items-center" md={"1"}>
         //             <Button onClick={()=>updateCart(individualComic[0])}>Buy Now</Button>
         //         </Col>
-        //         <Col md={"2"}>
-        //             <Card.Subtitle>Characters Involved</Card.Subtitle>
-        //             <div className="d-flex flex-column">
+        //         <Col style={{color: "white"}} className = "d-flex flex-column justify-content-start">
+        //             <Card.Subtitle className="mt-3">Characters Involved</Card.Subtitle>
+        //             <div style={{height: "40VH", overflowY: "scroll"}} className="d-flex flex-column">
         //             {temp.characters.items.map(ele => (
-        //                 <Link>{ele.name}</Link>
+        //                 <Link style={{color: "white"}}>{ele.name}</Link>
         //             ))}
         //             </div>
         //         </Col>

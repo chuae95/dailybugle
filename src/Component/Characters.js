@@ -13,6 +13,7 @@ function Characters() {
     const [singleCharArr, setSingleCharArr] = useState([])
     const [offset, setOffset] = useState(0)
 
+
     function pointer(e) {
         e.target.style.cursor = "pointer"
         e.target.style.padding = "5px"

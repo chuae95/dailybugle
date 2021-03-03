@@ -247,26 +247,30 @@ function SingleHero({addToCart, cart, user}) {
                 })
                 setComicList(temp)
             })
+
+        // setComicList(temp)
     }, [id])
 
 
         return (
             <div>
-                <div className="d-flex">
-                <div style={{width: "60%"}}>
-                    <h3>{singleHero.name}</h3>
-                    {/*<img src = {`${singleHero.thumbnail.path}/portrait_xlarge.${singleHero.thumbnail.extension}`} />*/}
-                    <h4>{singleHero.description}</h4>`
-                </div>
-                <div style={{width: "40%",backgroundSize: "cover", backgroundImage: "url('https://static3.srcdn.com/wordpress/wp-content/uploads/2019/12/marvel-logo-header.jpg?q=50&fit=crop&w=960&h=500')"}}>
-                </div>
-                </div>
-                {comicList.map((ele, idx) => (
-                    <div style={{border: "1px solid black"}}key = {idx}>
-                        <h4>{ele.name}</h4>
-                        <Comics comicList={comicList[idx]} singleHero={singleHero} id={id} name={ele.name} addToCart={addToCart} cart={cart} user={user}/>
+                <div className="d-flex" style={{height: "300px"}}>
+                    <div style={{width: "70%"}}>
+                        <h3 style={{height: "50px"}}>{singleHero.name}</h3>
+                        {/*<img src = {`${singleHero.thumbnail.path}/portrait_xlarge.${singleHero.thumbnail.extension}`} />*/}
+                        <h4 style={{height:"250px", overflowY:"scroll"}}>{singleHero.description}</h4>`
                     </div>
-                ))}
+                    <div style={{height: "308px", width: "30%",backgroundSize: "cover", backgroundImage: "url('https://static3.srcdn.com/wordpress/wp-content/uploads/2019/12/marvel-logo-header.jpg?q=50&fit=crop&w=960&h=500')"}}>
+                    </div>
+                </div>
+                <div style={{color: "white", backgroundColor: "#233645"}} className="mt-3">
+                    {comicList.map((ele, idx) => (
+                        <div style={{border: "1 px solid white"}} key = {idx}>
+                            <h4>{ele.name}</h4>
+                            <Comics comicList={comicList[idx]} singleHero={singleHero} id={id} name={ele.name} addToCart={addToCart} cart={cart} user={user}/>
+                        </div>
+                    ))}
+                </div>
             </div>
         );
      }

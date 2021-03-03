@@ -127,7 +127,7 @@ function Home() {
                 <div id="characters-desc">
                     <div>
                         <div>What are you waiting for? <br/> Join Your Favourite Heroes in their adventures now!</div>
-                        <button>Click here to find out more!</button>
+                        <Link to="/characters">Click here to find out more!</Link>
                     </div>
                 </div>
 

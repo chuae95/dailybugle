@@ -194,14 +194,14 @@ function ComicsLib({addToCart, cart, user}) {
     }
 
         return (
-            <div className="d-flex" style={{width: "100VW", height: "90VH", backgroundColor:"black"}}>
+            <div className="d-flex" style={{width: "100VW", height: "100VH", backgroundColor:"black"}}>
                 {(comicList.length > 0) ?
                     <div className="d-flex flex-column align-items-center justify-content-center flex-wrap" style={{width: "60VW",height: "auto", backgroundColor: "white", backgroundSize: "cover", backgroundImage: "url('https://i.stack.imgur.com/QgTND.jpg')"}}>
                         <Row>
                             <Col>
                                 <Card className="pl-3 pr-3 pt-3 pb-3">
                                     <Card.Title style={{width: "450px"}}>{comicList[index].title}</Card.Title>
-                                    <Card.Img className="mb-3" style={{width: "450px", height: "600px"}} src = {`${comicList[index].thumbnail.path}/portrait_xlarge.${comicList[index].thumbnail.extension}`}/>
+                                    <Card.Img className="mb-3" style={ {width: "450px", height: "600px"}} src = {`${comicList[index].thumbnail.path}/portrait_xlarge.${comicList[index].thumbnail.extension}`}/>
                                     <Card.Subtitle className="mb-3" style={{width: "450px", height: "100px", overflowY: "scroll"}}>
                                         {(comicList[index].description === null) ?
                                         "Unfortunately, the summary is unavailable at the moment, kindly use the link below for more information" :
@@ -221,7 +221,7 @@ function ComicsLib({addToCart, cart, user}) {
                             </Col>
                         </Row>
                     </div>:
-                    <div style={{color: "white"}}>Loading</div>
+                    <div style={{position: "fixed", zIndex: "1",backgroundSize: "cover", backgroundRepeat: "no-repeat", width: "100VW", height: "100VH", color: "white", backgroundImage: "url(https://enginestories.com/wp-content/uploads/2020/04/marvel-gif.gif)"}}></div>
                 }
                 <div style={{width: "40VW", overflowY: "scroll"}} className="d-flex justify-content-center">
                     <Row style={{width: "90%"}} className="mt-5">
