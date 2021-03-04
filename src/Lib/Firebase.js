@@ -7,7 +7,7 @@ const config = {
     storageBucket: "dailybugle-fa63a.appspot.com",
     messagingSenderId: "101793039981",
     appId: "1:101793039981:web:bf35e5c74b40e5c4a0a164"
-}
+}.
 
 firebase.initializeApp(config)
 

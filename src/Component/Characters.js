@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {Card, Row, Col, Form} from "react-bootstrap"
 import axios from "axios";
 import {Link} from "react-router-dom"
+import "../CSS/Characters.css"
 
 import DemoV4 from "./Banner";
 
@@ -12,18 +13,6 @@ function Characters() {
     const [singleChar, setSingleChar] = useState("")
     const [singleCharArr, setSingleCharArr] = useState([])
     const [offset, setOffset] = useState(0)
-
-    function pointer(e) {
-        e.target.style.cursor = "pointer"
-        e.target.style.padding = "5px"
-        e.target.style.border = "0px solid black"
-    }
-
-    function normal(e) {
-        e.target.style.cursor = "normal"
-        e.target.style.border = "none"
-        e.target.style.padding = "0px"
-    }
 
     function addOffset() {
         if (offset < 1200) {
@@ -77,29 +66,45 @@ function Characters() {
                         <button onClick={addOffset}>Next</button>
                     </Col>
                 </Row>
-                <Row>
+                <Row style={{width: "80VW", margin: " 30px auto"}}>
                     {(singleCharArr.length === 0) ?
                         charArr.map(ele => (
-                                <Col key={ele.id} md={"2"}>
-                                    <Card className="m-5" onMouseEnter={pointer} onMouseLeave={normal}>
-                                        <Card.Img
-                                            src={`${ele.thumbnail.path}/portrait_xlarge.${ele.thumbnail.extension}`}/>
-                                        <Card.Title>{ele.name}</Card.Title>
-                                        <Link to={`/characters/${ele.id}`}>View Comics</Link>
-                                        <a href={`${ele.urls[0].url}`}>View Bio</a>
-                                    </Card>
+                                <Col className="mt-3 char" key={ele.id} md={"2"}>
+                                    <div style={{width: "100%"}}>
+                                        <a href={`${ele.urls[0].url}`}>
+                                            <img style={{width: "100%"}} src = {`${ele.thumbnail.path}/portrait_xlarge.${ele.thumbnail.extension}`} />
+                                        </a>
+                                        <a className ="links" href={`${ele.urls[0].url}`}>
+                                            <h5 style={{height: "50px", marginTop: "30px"}}>{ele.name}</h5>
+                                        </a>
+
+                                        <h6>
+                                            <Link to={`/characters/${ele.id}`}>Browse Stories</Link>
+                                        </h6>
+                                    </div>
+                                    {/*<Card onMouseOver={pointer} onMouseOut={normal}>*/}
+                                    {/*    <Card.Img src={`${ele.thumbnail.path}/portrait_xlarge.${ele.thumbnail.extension}`}/>*/}
+                                        {/*<Card.Title>{ele.name}</Card.Title>*/}
+                                        {/*<Link to={`/characters/${ele.id}`}>View Comics</Link>*/}
+                                        {/*<a href={`${ele.urls[0].url}`}>View Bio</a>*/}
+                                    {/*</Card>*/}
                                 </Col>
                             ))
                         :
                         singleCharArr.map(ele => (
-                            <Col key={ele.id} md={"3"}>
-                                <Card className="m-5" onMouseEnter={pointer} onMouseLeave={normal}>
-                                    <Card.Img
-                                        src={`${ele.thumbnail.path}/portrait_xlarge.${ele.thumbnail.extension}`}/>
-                                    <Card.Title>{ele.name}</Card.Title>
-                                    <Link to={`/characters/${ele.id}`}>View Character</Link>
-                                    <a href={`${ele.urls[0].url}`}>View Bio</a>
-                                </Card>
+                            <Col className="mt-3 char" key={ele.id} md={"2"}>
+                                <div style={{width: "100%"}}>
+                                    <a href={`${ele.urls[0].url}`}>
+                                        <img style={{width: "100%"}} src = {`${ele.thumbnail.path}/portrait_xlarge.${ele.thumbnail.extension}`} />
+                                    </a>
+                                    <a className ="links" href={`${ele.urls[0].url}`}>
+                                        <h5 style={{height: "50px", marginTop: "30px"}}>{ele.name}</h5>
+                                    </a>
+                                    <h6>
+                                        <Link to={`/characters/${ele.id}`}>Browse Stories</Link>
+                                    </h6>
+                                </div>
+
                             </Col>
                         ))
 
