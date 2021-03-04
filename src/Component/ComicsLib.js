@@ -154,18 +154,22 @@ function ComicsLib({addToCart, cart, user}) {
         e.target.style.padding = "none"
         e.target.style.border = "none"
     }
+
     function comicSelected(value) {
         setIndex(value)
     }
 
-    function updateCart(obj) {
+    async function updateCart(obj) {
         if (user == null) {
             alert("Please login to add item to cart")
         } else {
+            console.log(cart.indexOf(obj))
             if (cart.indexOf(obj) >= 0) {
                 alert("You have already added this item to cart")
             } else {
+                console.log(obj)
                 addToCart(prevState => [...prevState, obj])
+
             }
         }
 

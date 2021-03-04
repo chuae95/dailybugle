@@ -1,27 +1,34 @@
-import firebase from "./Firebase"
+import firebase, {auth} from "./Firebase"
 
 const db = firebase.firestore();
 
-export async function createUser(collection, data, email) {
+export async function createUser(collection, data, user, setEvent) {
     const userData = await db.collection(collection)
 
-
-    userData.where("email", "==", email).get()
-        .then(qS => {
-            qS.forEach(d => {
-                //run again see the output
-                console.log(d.data())
-                if (!d.exists) {
-
-                    userData.add(data)
-                }
-            })
+    let uExist = await userData.where("id", "==" ,user.uid).get()
+    if(uExist.size){
+        uExist.forEach(doc => {
+            // setEvent(doc.data().cart)
         })
+    }else{
+        userData.add(data)
+    }
 
-    //Us
 }
 
-//Login by google accounts
-//Check the different documents and see the email field in them
-//If it exists, then pull the last known data of the cart (can be empty or filled)
-//If it doesn't create a new user with a new UID and then
+export async function saveUser(collection, data, user) {
+    const userData = await db.collection(collection)
+    userData.where("id", "==", user.uid).get()
+            .then(docs => {
+                console.log("user", docs.size)
+                    docs.forEach(doc => {
+                        console.log(doc.id)
+                        db.collection(collection).doc(doc.id).update(data)
+                    })
+
+            }).
+            catch(e =>{
+                console.log(e)
+            })
+
+}

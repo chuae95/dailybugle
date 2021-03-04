@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {Navbar, NavDropdown, Badge} from "react-bootstrap"
 import {NavLink} from "react-router-dom"
 import firebase, {auth, provider} from "../Lib/Firebase"
-import {createUser} from "../Lib/Lib"
+import {createUser, saveUser} from "../Lib/Lib"
 import "../CSS/Navigation.css"
 
 function Navigation({cart, user, online, setCart}) {
@@ -41,22 +41,23 @@ function Navigation({cart, user, online, setCart}) {
                     })
 
         var user = firebase.auth().currentUser
-        console.log(user.email)
-
-        createUser("users", {"email" : user.email, "cart" : []}, user.email)
+        createUser("users", {"id" : user.uid, "cart" : []}, user, setCart)
 
     }
 
     function logout() {
-        auth.signOut()
-            .then(() => {
-                online(null)
+
+        var user = firebase.auth().currentUser
+        console.log(user)
+
+        saveUser("users", {"id" : user.uid, "cart" : cart }, user)
+            .then(suc => {
+                auth.signOut()
+                    .then(() => {
+                        online(null)
+                    })
             })
-
         setCart([])
-
-
-
     }
 
 
