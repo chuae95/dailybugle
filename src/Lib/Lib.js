@@ -5,13 +5,20 @@ const db = firebase.firestore();
 export async function createUser(collection, data, email) {
     const userData = await db.collection(collection)
 
-    if (userData) {
-        console.log("User is already recorded")
-        userData.add(data)
-    } else {
 
+    userData.where("email", "==", email).get()
+        .then(qS => {
+            qS.forEach(d => {
+                //run again see the output
+                console.log(d.data())
+                if (!d.exists) {
 
-    }
+                    userData.add(data)
+                }
+            })
+        })
+
+    //Us
 }
 
 //Login by google accounts
