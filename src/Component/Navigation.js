@@ -2,13 +2,14 @@ import React, {useEffect, useState} from 'react'
 import {Navbar, NavDropdown, Badge} from "react-bootstrap"
 import {NavLink} from "react-router-dom"
 import firebase, {auth, provider} from "../Lib/Firebase"
-
+import {createUser} from "../Lib/Lib"
 import "../CSS/Navigation.css"
 
 function Navigation({cart, user, online, setCart}) {
 
     const [scrolled, setScrolled] = useState(false)
     let x = ["navbar"]
+    const usersRef = firebase.database().ref("users")
 
     function selectNav(e) {
         e.target.style.color = "black";
@@ -32,12 +33,17 @@ function Navigation({cart, user, online, setCart}) {
     }
 
 
-    function login() {
-        auth.signInWithPopup(provider)
-            .then((result) => {
-                const user = result.user;
-                online(user)
-            })
+    async function login() {
+        const a = await auth.signInWithPopup(provider)
+                    .then((result) => {
+                        const user = result.user;
+                        online(user)
+                    })
+
+        var user = firebase.auth().currentUser
+        console.log(user.email)
+
+        createUser("users", {"email" : user.email, "cart" : []}, user.email)
 
     }
 
@@ -49,7 +55,11 @@ function Navigation({cart, user, online, setCart}) {
 
         setCart([])
 
+
+
     }
+
+
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll)
