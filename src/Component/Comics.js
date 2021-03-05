@@ -21,7 +21,6 @@ function Comics({comicList, singleHero, id, addToCart, name, cart, user}) {
                 addToCart(prevState => ([...prevState, obj]))
             }
         }
-
     }
 
     useEffect(() => {
