@@ -9,6 +9,8 @@ function Comics({comicList, singleHero, id, addToCart, name, cart, user}) {
 
     const [loading, setLoading] = useState(true)
 
+    const API_KEY = process.env.REACT_APP_DB_API_KEY
+
     function updateCart(obj) {
         if (user == null) {
             alert("Please login to add item to cart")
@@ -24,7 +26,7 @@ function Comics({comicList, singleHero, id, addToCart, name, cart, user}) {
 
     useEffect(() => {
 
-        const a = getInfo(`${comicList.resourceURI}?ts=1&apikey=3471aeb1ecc235abf317b810dfa2ed7f&hash=16758f16bf31f97be2027a67da287bd4`)
+        const a = getInfo(`${comicList.resourceURI}?${API_KEY}`)
 
     }, [id, loading, name])
 
@@ -64,32 +66,6 @@ function Comics({comicList, singleHero, id, addToCart, name, cart, user}) {
              </Row>
              }
          </div>
-        // <div>
-        //     <Row style={{height: "45VH", backgroundSize: "cover", backgroundImage: "url(https://wallpapercave.com/wp/wp5265940.jpg)"}}>
-        //         <Col className="d-flex justify-content-center align-items-center" md={"2"}>
-        //             <Card.Img style={{height: "40VH"}} src = {`${temp.thumbnail.path}/portrait_xlarge.${temp.thumbnail.extension}`} />
-        //         </Col>
-        //         <Col style={{color: "white"}} className="d-flex flex-column justify-content-center" md={"3"}>
-        //             <Card.Title>{temp.issueNumber}</Card.Title>
-        //             <Card.Subtitle>{temp.description}</Card.Subtitle>
-        //         </Col>
-        //         <Col style={{color: "white"}} className="d-flex justify-content-center align-items-center" md={"1"}>
-        //             <Card.Subtitle>US$ {temp.prices[0].price}</Card.Subtitle>
-        //         </Col>
-        //         <Col className="d-flex justify-content-center align-items-center" md={"1"}>
-        //             <Button onClick={()=>updateCart(individualComic[0])}>Buy Now</Button>
-        //         </Col>
-        //         <Col style={{color: "white"}} className = "d-flex flex-column justify-content-start">
-        //             <Card.Subtitle className="mt-3">Characters Involved</Card.Subtitle>
-        //             <div style={{height: "40VH", overflowY: "scroll"}} className="d-flex flex-column">
-        //             {temp.characters.items.map(ele => (
-        //                 <Link style={{color: "white"}}>{ele.name}</Link>
-        //             ))}
-        //             </div>
-        //         </Col>
-        //
-        //     </Row>
-        // </div>
 
 
         );

@@ -49,6 +49,10 @@ function Navigation({cart, user, online, setCart}) {
 
         var user = firebase.auth().currentUser
         console.log(user)
+        auth.signOut()
+            .then(() => {
+                online(null)
+            })
 
         saveUser("users", {"id" : user.uid, "cart" : cart }, user)
             .then(suc => {

@@ -60,7 +60,7 @@ function Cart({cart, removeFromCart}) {
                             <Col md={"2"}>Price</Col>
                             <Col></Col>
                         </Row>
-                        <div className="d-flex align-items-center flex-wrap justify-content-center ml-3" style={{overflowX: "hidden", width:"70VW", overflowY: "scroll", height: "50VH", border: "1px solid white", backgroundColor: "black"}}>
+                        <div className="d-flex align-items-start flex-wrap justify-content-center ml-3" style={{overflowX: "hidden", width:"70VW", overflowY: "scroll", height: "50VH", border: "1px solid white", backgroundColor: "black"}}>
 
                             {cart.map(ele => (
                                 <div style={{color: "white",width: "100%", backgroundColor: "rgba(0,0,0,1"}}>

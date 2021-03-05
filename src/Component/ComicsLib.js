@@ -8,166 +8,27 @@ function ComicsLib({addToCart, cart, user}) {
     const [loading, setLoading] = useState(true)
     const [index, setIndex] = useState(0)
 
-    let temp = [
-    {
-        "id": 23665,
-        "title": "Marvel Previews (2017 - Present)",
-        "description": null,
-        "resourceURI": "http://gateway.marvel.com/v1/public/series/23665",
-        "urls": [
-        {
-            "type": "detail",
-            "url": "http://marvel.com/comics/series/23665/marvel_previews_2017_-_present?utm_campaign=apiRef&utm_source=3471aeb1ecc235abf317b810dfa2ed7f"
-        }
-    ],
-        "startYear": 2017,
-        "endYear": 2099,
-        "rating": "",
-        "type": "",
-        "modified": "2020-02-07T09:35:58-0500",
-        "thumbnail": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available",
-            "extension": "jpg"
-    },
-        "creators": {
-        "available": 1,
-            "collectionURI": "http://gateway.marvel.com/v1/public/series/23665/creators",
-            "items": [
-            {
-                "resourceURI": "http://gateway.marvel.com/v1/public/creators/10021",
-                "name": "Jim Nausedas",
-                "role": "editor"
-            }
-        ],
-            "returned": 1
-    },
-        "characters": {
-        "available": 0,
-            "collectionURI": "http://gateway.marvel.com/v1/public/series/23665/characters",
-            "items": [
-
-        ],
-            "returned": 0
-    },
-        "stories": {
-        "available": 3,
-            "collectionURI": "http://gateway.marvel.com/v1/public/series/23665/stories",
-            "items": [
-            {
-                "resourceURI": "http://gateway.marvel.com/v1/public/stories/183698",
-                "name": "cover from Marvel Previews (2017)",
-                "type": "cover"
-            },
-            {
-                "resourceURI": "http://gateway.marvel.com/v1/public/stories/183699",
-                "name": "story from Marvel Previews (2017)",
-                "type": "interiorStory"
-            },
-            {
-                "resourceURI": "http://gateway.marvel.com/v1/public/stories/183704",
-                "name": "cover from Marvel Previews (2017)",
-                "type": "cover"
-            }
-        ],
-            "returned": 3
-    },
-        "comics": {
-        "available": 13,
-            "collectionURI": "http://gateway.marvel.com/v1/public/series/23665/comics",
-            "items": [
-            {
-                "resourceURI": "http://gateway.marvel.com/v1/public/comics/82967",
-                "name": "Marvel Previews (2017)"
-            },
-            {
-                "resourceURI": "http://gateway.marvel.com/v1/public/comics/65364",
-                "name": "Marvel Previews (2017)"
-            },
-            {
-                "resourceURI": "http://gateway.marvel.com/v1/public/comics/82969",
-                "name": "Marvel Previews (2017)"
-            },
-            {
-                "resourceURI": "http://gateway.marvel.com/v1/public/comics/72736",
-                "name": "Marvel Previews (2017)"
-            },
-            {
-                "resourceURI": "http://gateway.marvel.com/v1/public/comics/82970",
-                "name": "Marvel Previews (2017)"
-            },
-            {
-                "resourceURI": "http://gateway.marvel.com/v1/public/comics/73776",
-                "name": "Marvel Previews (2017)"
-            },
-            {
-                "resourceURI": "http://gateway.marvel.com/v1/public/comics/74320",
-                "name": "Marvel Previews (2017)"
-            },
-            {
-                "resourceURI": "http://gateway.marvel.com/v1/public/comics/74697",
-                "name": "Marvel Previews (2017)"
-            },
-            {
-                "resourceURI": "http://gateway.marvel.com/v1/public/comics/75662",
-                "name": "Marvel Previews (2017)"
-            },
-            {
-                "resourceURI": "http://gateway.marvel.com/v1/public/comics/75668",
-                "name": "Marvel Previews (2017)"
-            },
-            {
-                "resourceURI": "http://gateway.marvel.com/v1/public/comics/65028",
-                "name": "Marvel Previews (2017)"
-            },
-            {
-                "resourceURI": "http://gateway.marvel.com/v1/public/comics/82965",
-                "name": "Marvel Previews (2017)"
-            },
-            {
-                "resourceURI": "http://gateway.marvel.com/v1/public/comics/65158",
-                "name": "Marvel Previews (2017)"
-            }
-        ],
-            "returned": 13
-    },
-        "events": {
-        "available": 0,
-            "collectionURI": "http://gateway.marvel.com/v1/public/series/23665/events",
-            "items": [
-
-        ],
-            "returned": 0
-    },
-        "next": null,
-        "previous": null
-    }
-]
+    const API_KEY = process.env.REACT_APP_DB_API_KEY
 
     function pointer(e) {
         e.target.style.cursor = "pointer"
-        e.target.style.padding = "5px"
-        e.target.style.border = "2px solid black"
     }
 
     function normal(e) {
         e.target.style.cursor = "cursor"
-        e.target.style.padding = "none"
-        e.target.style.border = "none"
     }
 
     function comicSelected(value) {
         setIndex(value)
     }
 
-    async function updateCart(obj) {
+    function updateCart(obj) {
         if (user == null) {
             alert("Please login to add item to cart")
         } else {
-            console.log(cart.indexOf(obj))
             if (cart.indexOf(obj) >= 0) {
                 alert("You have already added this item to cart")
             } else {
-                console.log(obj)
                 addToCart(prevState => [...prevState, obj])
 
             }
@@ -179,16 +40,15 @@ function ComicsLib({addToCart, cart, user}) {
 
         getComics()
 
-        // setComicList(temp)
     },[index])
 
     async function getComics() {
         let temp = []
-        const a = await axios.get("http://gateway.marvel.com/v1/public/comics?ts=1&apikey=3471aeb1ecc235abf317b810dfa2ed7f&hash=16758f16bf31f97be2027a67da287bd4&limit=100")
+        const a = await axios.get(`http://gateway.marvel.com/v1/public/comics?${API_KEY}&limit=100`)
             .then(response =>
             response)
-        for(let i = 0; i < 5; i++) {
-            const b = await axios.get(`${a.data.data.results[i].resourceURI}?ts=1&apikey=3471aeb1ecc235abf317b810dfa2ed7f&hash=16758f16bf31f97be2027a67da287bd4`)
+        for(let i = 0; i < 100; i++) {
+            const b = await axios.get(`${a.data.data.results[i].resourceURI}?${API_KEY}`)
                 .then(resp => {
                     temp.push(resp.data.data.results[0])
                 })
