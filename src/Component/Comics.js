@@ -30,7 +30,9 @@ function Comics({comicList, singleHero, id, addToCart, name, cart, user}) {
     }, [id, loading, name])
 
     async function getInfo(url) {
-        await axios.get(url)
+        let a = url.slice(4)
+        let b = "https"
+        await axios.get(b + a)
             .then(response => {
                 setIndividualComic(response.data.data.results[0])
                 setLoading(false)

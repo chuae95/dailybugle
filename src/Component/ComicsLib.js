@@ -43,12 +43,13 @@ function ComicsLib({addToCart, cart, user}) {
     },[index])
 
     async function getComics() {
-        let temp = []
-        const a = await axios.get(`http://gateway.marvel.com/v1/public/comics?${API_KEY}&limit=100`)
+        let temp  = []
+        const a = await axios.get(`https://gateway.marvel.com/v1/public/comics?${API_KEY}&limit=100`)
             .then(response =>
             response)
-        for(let i = 0; i < 100; i++) {
-            const b = await axios.get(`${a.data.data.results[i].resourceURI}?${API_KEY}`)
+        for(let i = 0; i < 10; i++) {
+            let url = a.data.data.results[i].resourceURI.slice(4)
+            const b = await axios.get(`https${url}?${API_KEY}`)
                 .then(resp => {
                     temp.push(resp.data.data.results[0])
                 })
@@ -56,6 +57,7 @@ function ComicsLib({addToCart, cart, user}) {
         setComicList(temp)
         setLoading(false)
     }
+
 
         return (
             <div className="d-flex" style={{width: "100VW", height: "100VH", backgroundColor:"black"}}>
